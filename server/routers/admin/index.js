@@ -37,4 +37,12 @@ module.exports = app => {
         
         next();
     },router);
+
+    const multer = require('multer');
+    const upload = multer({dest:__dirname + "../../../uploads"})//使用multer中间件来处理图像保存问题
+    app.post("/admin/api/upload", upload.single("file"),async (req,res)=>{
+        file = req.file;
+        file.url = `http://localhost:3000/uploads/${file.filename}`;
+        res.send(file);
+    })
 }
