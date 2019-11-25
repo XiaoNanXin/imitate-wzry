@@ -7,7 +7,10 @@ import http from './http';
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
-Vue.protype.$http = http
+Vue.prototype.$http = http
+
+import './style.css'
+
 
 new Vue({
   render: h => h(App),

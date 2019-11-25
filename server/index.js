@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 
-
+app.set("secret","mlszd");
 app.use(cors());
 app.use(express.json());
 app.use("/uploads",express.static(__dirname+"/uploads"));
