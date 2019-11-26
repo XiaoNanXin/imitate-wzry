@@ -63,7 +63,7 @@
             <el-dropdown-item>删除</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span>王小虎</span>
+        <span>{{user.username}}</span>
       </el-header>
 
       <el-main>
@@ -93,8 +93,19 @@ export default {
       address: "上海市普陀区金沙江路 1518 弄"
     };
     return {
-      tableData: Array(20).fill(item)
+      tableData: Array(20).fill(item),
+      user:{}
     };
-  }
+  },
+  methods: {
+    async getUser(){
+      let token = {token:localStorage.token};
+      let user = await this.$http.post("/user",token);
+      this.user = user.data;
+    }
+  },
+  created() {
+    this.getUser();
+  },
 };
 </script>

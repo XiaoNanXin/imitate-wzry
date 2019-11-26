@@ -14,6 +14,7 @@
             <el-upload
               class="avatar-uploader"
               :action="$http.defaults.baseURL + '/upload'"
+              :headers="getAutorization()"
               :show-file-list="false"
               :on-success="upLoad"
             >
@@ -76,6 +77,7 @@
                 <el-upload
                   class="avatar-uploader"
                   :action="$http.defaults.baseURL + '/upload'"
+                  :headers="getAutorization()"
                   :show-file-list="false"
                   :on-success="res => $set(item,'icon',res.url)"
                 >

@@ -41,6 +41,10 @@ export default {
             let res = await this.$http.post("/login",this.model);
             localStorage.token = res.data.token;
             this.$router.push('/');
+            this.$message({
+                type:"success",
+                message:"登陆成功"
+            })
         }
     }
 }

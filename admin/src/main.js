@@ -10,7 +10,15 @@ Vue.use(ElementUI);
 Vue.prototype.$http = http
 
 import './style.css'
-
+Vue.mixin({
+  methods: {
+    getAutorization(){
+      return {
+        Authorization:`Bearer ${localStorage.token || ''}`
+      };
+    }
+  },
+})
 
 new Vue({
   render: h => h(App),
