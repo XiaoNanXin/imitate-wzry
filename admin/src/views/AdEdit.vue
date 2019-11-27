@@ -54,9 +54,9 @@ export default {
   methods: {
     async save() {
       if (this.id) {
-        await this.$http.put(`/rest/ads/${this.id}`, this.model);
+        await this.$http.put(`/rest/adds/${this.id}`, this.model);
       } else {
-        await this.$http.post("/rest/ads", this.model);
+        await this.$http.post("/rest/adds", this.model);
       }
       this.$router.push("/ads/list");
       this.$message({
@@ -65,7 +65,7 @@ export default {
       });
     },
     async fecth() {
-      const res = await this.$http.get(`/rest/ads/${this.id}`);
+      const res = await this.$http.get(`/rest/adds/${this.id}`);
       this.model = res.data;
     }
   },

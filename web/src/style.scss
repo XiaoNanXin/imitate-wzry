@@ -1,0 +1,187 @@
+*{
+    box-sizing: border-box;
+    outline: none;
+}
+
+html{
+    font-size: 13px;
+}
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.2em;
+    background: #f1f1f1;
+    -webkit-font-smoothing: antialiased;
+}
+
+a{
+    color: #999;
+}
+
+$base-font-size: 1rem;
+
+$colors: (
+  'primary': #db9e3f,
+  'info': #4b67af,
+  'danger': #791a15,
+  'blue-1': #1f3695,
+  'blue': #4394e4,
+  'white': #fff,
+  'white-1': #fcfcfc,
+  'white-2': #eceef0,
+  'light': #f9f9f9,
+  'light-1': #d4d9de,
+  'grey': #999,
+  'grey-1': #666,
+  'dark-1': #343440,
+  'dark': #222,
+  'black': #000,
+  
+);
+@each $colorKey,$color in $colors {
+  .text-#{$colorKey}{
+    color: $color;
+  }
+}
+@each $colorKey,$color in $colors {
+  .bg-#{$colorKey}{
+    background: $color;
+  }
+}
+$font-sizes: (
+  xxs: 0.6154,
+  xs: 0.7692,
+  //10px
+    sm: 0.9231,
+  //12px
+    md: 1,
+  //13px
+    lg: 1.0769,
+  //14px
+    xl: 1.2308,
+  //16px,,,,
+);
+@each $sizeKey,$size in $font-sizes {
+  .fs-#{$sizeKey}{
+    font-size: $size * $base-font-size;
+  }
+}
+.d-flex {
+  display: flex;
+}
+.flex-1{
+  flex: 1;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+$flex-jc:(
+  start:flex-start,
+  end:flex-end,
+  center:center,
+  between:space-between,
+  around:space-around
+);
+@each $key,$value in $flex-jc {
+  .jc-#{$key}{
+    justify-content: $value;
+  }
+}
+$flex-ai:(
+  start:flex-start,
+  end:flex-end,
+  center:center,
+  stretch:stretch
+);
+@each $key,$value in $flex-ai {
+  .ai-#{$key}{
+    align-items: $value;
+  }
+}
+
+$spacing-base-size: 1rem;
+
+$spacing-types: (
+  m: margin,
+  p: padding,
+);
+$spacing-directions: (
+  t: top,
+  r: right,
+  b: bottom,
+  l: left,
+);
+$spacing-sizes: (
+  0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.5,
+  5: 3,
+);
+@each $typeKey,$typeValue in $spacing-types {
+  //m-0
+  @each $sizeKey,$sizeValue in $spacing-sizes {
+    .#{$typeKey}-#{$sizeKey}{
+      #{$typeValue}:$sizeValue * $spacing-base-size
+    }
+  }
+  //mx-0
+  @each $sizeKey,$sizeValue in $spacing-sizes {
+    .#{$typeKey}x-#{$sizeKey}{
+      #{$typeValue}-left: $sizeValue * $spacing-base-size;
+      #{$typeValue}-right: $sizeValue * $spacing-base-size;
+    }
+  }
+  //my-0
+  @each $sizeKey,$sizeValue in $spacing-sizes {
+    .#{$typeKey}y-#{$sizeKey}{
+      #{$typeValue}-top: $sizeValue * $spacing-base-size;
+      #{$typeValue}-bottom: $sizeValue * $spacing-base-size;
+    }
+  }
+  //mt-0
+  @each $directionsKey,$directionsValue in $spacing-directions {
+    @each $sizeKey,$sizeValue in $spacing-sizes {
+      .#{$typeKey}#{$directionsKey}-#{$sizeKey}{
+        #{$typeValue}-#{$directionsValue}: $sizeValue * $spacing-base-size
+      }
+    }
+  }
+}
+// button
+.btn {
+  border:none;
+  border-radius: 0.1538rem;
+  font-size: map-get($font-sizes, 'sm') * $base-font-size;
+  padding: 0.2rem 0.6rem;
+  &.btn-lg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      color: map-get($colors, 'primary');
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+    background: map-get($colors, 'white-1');
+    border: 1px solid map-get($colors, 'white-2');
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+.nav{
+  .nav-item{
+    border-bottom: 3px solid transparent;
+    padding-bottom: 0.2rem;
+    &.active{
+      border-bottom-color: map-get($map: $colors, $key: "white");
+    }
+  }
+}

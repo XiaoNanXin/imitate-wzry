@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     async getlist() {
-      const res = await this.$http.get("/rest/ads");
+      const res = await this.$http.get("/rest/adds");
       this.listData = res.data;
       window.console.log(res);
     },
@@ -38,7 +38,7 @@ export default {
         type: "warning"
       })
         .then(async() => {
-          await this.$http.delete(`/rest/ads/${row._id}`);
+          await this.$http.delete(`/rest/adds/${row._id}`);
           // window.console.log(res);
           this.$message({
             type: "success",
