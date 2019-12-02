@@ -148,11 +148,48 @@ $spacing-base-size: 1rem;
 }
 
 .nav{
+  display: flex;
   .nav-item{
     border-bottom: 3px solid transparent;
     padding-bottom: 0.2rem;
     &.active{
-      border-bottom-color: map-get($map: $colors, $key: "white");
+      color: map-get($map: $colors, $key: 'primary');
+      border-bottom-color: map-get($map: $colors, $key: "primary");
     }
+  }
+  &.nav-reverse{
+    .nav-item{
+      color: white;
+    &.active{
+      color: map-get($map: $colors, $key: 'white');
+      border-bottom-color: map-get($map: $colors, $key: 'white');
+    }
+    }
+  }
+}
+
+.sprite{
+  background: url("../images/index.png") no-repeat 0 0;
+  display: inline-block;
+  background-size: 375px;
+  &.sprite-news{
+    width: 23px;
+    height: 20px;
+    background-position: 63.546% 15.517%;
+  }
+  &.sprite-story{
+    width: 23px;
+    height: 23px;
+    background-position: 90.483% 15.614%;
+  }
+  &.sprite-shop{
+    width: 19px;
+    height: 22px;
+    background-position: 36.746% 0.924%;
+  }
+  &.sprite-arrow{
+    width: 10px;
+    height: 10px;
+    background-position: 38.577% 52.076%;
   }
 }

@@ -7,6 +7,11 @@ Vue.config.productionTip = false
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
+import './assets/font/iconfont.css'
+import Card from './components/Card.vue'
+Vue.component('Mcard',Card);
+import ListCard from './components/ListCard.vue'
+Vue.component('m-list-card',ListCard);
 
 new Vue({
   router,
