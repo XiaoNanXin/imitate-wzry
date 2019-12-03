@@ -42,6 +42,14 @@ $base-font-size: 1rem;
     background: $color;
   }
 }
+
+//文字不换行溢出显示省略号
+.text-ellipsis{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 $font-sizes: (
   xxs: 0.6154,
   xs: 0.7692,

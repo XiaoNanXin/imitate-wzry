@@ -71,19 +71,29 @@
     </div>
     <m-list-card icon="menu" title="新闻资讯" :categories="newsData">
       <template #items="{category}">
-        <div class="py-2" v-for="(item,i) in category.newsList" :key="i">
-          <span>[{{item.categorityName}}]</span>
-          <span>|</span>
-          <span>{{item.title}}</span>
-          <span>{{item.date}}</span>
+        <div class="py-2 fs-lg d-flex" v-for="(item,i) in category.newsList" :key="i">
+          <span class="text-info">[{{item.categorityName}}]</span>
+          <span class="px-1">|</span>
+          <span class="text-ellipsis flex-1">{{item.title}}</span>
+          <span class="jc-right text-grey-1">{{item.createdAt | date}}</span>
         </div>
       </template>
     </m-list-card>
+    <m-list-card icon="hero" title="英雄列表"></m-list-card>
+    <m-list-card icon="hero" title="精彩视频"></m-list-card>
+    <m-list-card icon="hero" title="图文攻略"></m-list-card>
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs';
 export default {
+  
+  filters: {
+    date(val){
+      return dayjs(val).format("MM/DD");
+    }
+  },
   data() {
     return {
       swiperOption: {
@@ -95,50 +105,18 @@ export default {
         },
         loop: true
       },
-      newsData: [
-        {
-          name: "热门",
-          newsList: new Array(5).fill(1).map(() => ({
-            categorityName: "公告",
-            title: "12月3日全服不停机更新公告",
-            date: "12/02"
-          }))
-        },
-        {
-          name: "新闻",
-          newsList: new Array(5).fill(1).map(() => ({
-            categorityName: "新闻",
-            title: "12月3日全服不停机更新公告",
-            date: "12/02"
-          }))
-        },
-        {
-          name: "新闻",
-          newsList: new Array(5).fill(1).map(() => ({
-            categorityName: "新闻",
-            title: "12月3日全服不停机更新公告",
-            date: "12/02"
-          }))
-        },
-        {
-          name: "新闻",
-          newsList: new Array(5).fill(1).map(() => ({
-            categorityName: "新闻",
-            title: "12月3日全服不停机更新公告",
-            date: "12/02"
-          }))
-        },
-        {
-          name: "新闻",
-          newsList: new Array(5).fill(1).map(() => ({
-            categorityName: "新闻",
-            title: "12月3日全服不停机更新公告",
-            date: "12/02"
-          }))
-        }
-      ]
+      newsData: []
     };
-  }
+  },
+  created() {
+    this.getnewsList();
+  },
+  methods: {
+    async getnewsList(){
+      let res = await this.$http.get('/news/list');
+      this.newsData = res.data;
+    }
+  },
 };
 </script>
 

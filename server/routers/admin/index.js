@@ -33,7 +33,7 @@ module.exports = app => {
       queryOptions.populate = 'parent'
     }
     const items = await req.Model.find().setOptions(queryOptions).limit(100)
-    console.log(items);
+    // console.log(items);
     res.send(items)
   })
   // 资源详情
