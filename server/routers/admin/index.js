@@ -47,7 +47,7 @@ module.exports = app => {
     //进行登录验证
     app.post("/admin/api/login",async (req,res)=>{
         let {username,password} = req.body;
-        let user = await AdminUser.findOne({username}).select('+password')
+        let user = await AdminUser.findOne({username}).select('+password')//select是为了能够查询到密码
         assert(user, 422, "用户不存在");
         // if(!user){
         //     res.status(422).send({
@@ -61,7 +61,7 @@ module.exports = app => {
         //         message:"密码错误"
         //     })
         // }
-        let token = await jwt.sign({id:user._id},app.get("secret"))
+        let token = await jwt.sign({id:user._id},app.get("secret"))//生成token
         res.send({token});
     })
 

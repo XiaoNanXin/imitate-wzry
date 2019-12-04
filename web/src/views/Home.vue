@@ -71,15 +71,24 @@
     </div>
     <m-list-card icon="menu" title="新闻资讯" :categories="newsData">
       <template #items="{category}">
-        <div class="py-2 fs-lg d-flex" v-for="(item,i) in category.newsList" :key="i">
+        <router-link tag="div" :to="`articles/${item._id}`" class="py-2 fs-lg d-flex" v-for="(item,i) in category.newsList" :key="i">
           <span class="text-info">[{{item.categorityName}}]</span>
           <span class="px-1">|</span>
           <span class="text-ellipsis flex-1">{{item.title}}</span>
           <span class="jc-right text-grey-1">{{item.createdAt | date}}</span>
-        </div>
+        </router-link>
       </template>
     </m-list-card>
-    <m-list-card icon="hero" title="英雄列表"></m-list-card>
+    <m-list-card icon="card-hero" title="英雄列表" :categories="heroData">
+      <template #items="{category}">
+        <ul class="hero_list">
+          <li class="hero_item px-2" v-for="(hero,i) in category.heroList" :key="i">
+            <img class="w-100" :src="hero.avatar" alt="">
+            <span class="fs-md text-center">{{hero.name}}</span>
+          </li>
+        </ul>
+      </template>
+    </m-list-card>
     <m-list-card icon="hero" title="精彩视频"></m-list-card>
     <m-list-card icon="hero" title="图文攻略"></m-list-card>
   </div>
@@ -105,16 +114,22 @@ export default {
         },
         loop: true
       },
-      newsData: []
+      newsData: [],
+      heroData:[]
     };
   },
   created() {
     this.getnewsList();
+    this.getHeroList();
   },
   methods: {
     async getnewsList(){
       let res = await this.$http.get('/news/list');
       this.newsData = res.data;
+    },
+    async getHeroList(){
+      let res = await this.$http.get('/heroes/list'); 
+      this.heroData = res.data;
     }
   },
 };
@@ -143,6 +158,19 @@ export default {
         border-right: none;
       }
     }
+  }
+}
+
+.hero_list{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0;
+  margin-left:-7px;
+  margin-right:-7px;
+  .hero_item{
+    width: 20%;
+    text-align: center;
   }
 }
 </style>

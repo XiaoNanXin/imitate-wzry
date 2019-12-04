@@ -1,7 +1,12 @@
 
 
 $base-font-size: 1rem;
-
+$dir:(
+  left,
+  right,
+  bottom,
+  top
+);
 $colors: (
   'primary': #db9e3f,
   'info': #4b67af,
@@ -20,6 +25,7 @@ $colors: (
   'black': #000,
   
 );
+$border-color:#d4d4d5;
 $font-sizes: (
   xxs: 0.6154,
   xs: 0.7692,

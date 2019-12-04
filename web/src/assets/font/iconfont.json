@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "436101",
+      "name": "back",
+      "font_class": "back",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
       "icon_id": "1023115",
       "name": "icon_nav_news",
       "font_class": "iconnavnews",
@@ -25,6 +32,13 @@
       "font_class": "menu",
       "unicode": "e616",
       "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "2141957",
+      "name": "about",
+      "font_class": "about",
+      "unicode": "e68f",
+      "unicode_decimal": 59023
     },
     {
       "icon_id": "5679137",

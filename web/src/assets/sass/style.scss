@@ -80,6 +80,12 @@ $font-sizes: (
 .flex-wrap {
   flex-wrap: wrap;
 }
+//添加边界
+@each $dir in $dir {
+  .border-#{$dir}{
+    border-#{$dir}: 1px solid $border-color;
+  }
+}
 
 @each $key,$value in $flex-jc {
   .jc-#{$key}{
