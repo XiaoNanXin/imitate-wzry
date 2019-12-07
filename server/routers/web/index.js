@@ -113,5 +113,14 @@ module.exports = app => {
         res.send(cats);
     })
 
+    //web端获取英雄详情页面
+    router.get('/heroes/:id',async (req,res) => {
+        let data = await Hero
+        .findById(req.params.id)
+      .populate('categories items1 items2 partners.hero')
+      .lean()
+        res.send(data);
+    })
+
 }
     

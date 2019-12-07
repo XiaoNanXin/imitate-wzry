@@ -14,59 +14,59 @@
     </swiper>
     <div class="nav-icons text-center mt-3">
       <div class="nav d-flex flex-wrap text-dark-1 fs-sm">
-        <div class="nav-item mt-2 pt-2 mb-2">
+        <router-link tag="div" to="https://pvp.qq.com/m/m201706/coming/index.htm" class="nav-item mt-2 pt-2 mb-2">
           <i class="sprite sprite-news"></i>
           <br />
-          <div class="py-1">爆料站</div>
-        </div>
+          <div class="py-1 text">爆料站</div>
+        </router-link>
         <div class="nav-item mt-2 pt-2 mb-2">
           <i class="sprite sprite-story"></i>
-          <div class="py-1">故事站</div>
+          <div class="py-1 text">故事站</div>
         </div>
         <div class="nav-item mt-2 pt-2 mb-2">
           <i class="sprite sprite-shop"></i>
-          <div class="py-1">周边商城</div>
+          <div class="py-1 text">周边商城</div>
         </div>
         <div class="nav-item mt-2 pt-2 mb-2">
-          <i class="sprite sprite-news"></i>
-          <div class="py-1">体验服</div>
+          <i class="sprite sprite-experience"></i>
+          <div class="py-1 text">体验服</div>
         </div>
-        <div class="nav-item mt-2 pt-2 mb-2">
-          <i class="sprite sprite-news"></i>
-          <div class="py-1">新人专区</div>
+        <div class="nav-item mt-2 pt-2 mb-2" v-show="isshow">
+          <i class="sprite sprite-new"></i>
+          <div class="py-1 text">新人专区</div>
         </div>
-        <div class="nav-item mt-2 pt-2 mb-2">
-          <i class="sprite sprite-news"></i>
-          <div class="py-1">荣耀·传承</div>
+        <div class="nav-item mt-2 pt-2 mb-2" v-show="isshow">
+          <i class="sprite sprite-inherit"></i>
+          <div class="py-1 text">荣耀·传承</div>
         </div>
-        <div class="nav-item mt-2 pt-2 mb-2">
-          <i class="sprite sprite-news"></i>
-          <div class="py-1">模拟战资料库</div>
+        <div class="nav-item mt-2 pt-2 mb-2" v-show="isshow">
+          <i class="sprite sprite-simulate"></i>
+          <div class="py-1 text">模拟战资料库</div>
         </div>
-        <div class="nav-item mt-2 pt-2 mb-2">
-          <i class="sprite sprite-news"></i>
-          <div class="py-1">王者营地</div>
+        <div class="nav-item mt-2 pt-2 mb-2" v-show="isshow">
+          <i class="sprite sprite-king"></i>
+          <div class="py-1 text">王者营地</div>
         </div>
-        <div class="nav-item mt-2 pt-2 mb-2">
-          <i class="sprite sprite-news"></i>
-          <div class="py-1">公众号</div>
+        <div class="nav-item mt-2 pt-2 mb-2" v-show="isshow">
+          <i class="sprite sprite-account"></i>
+          <div class="py-1 text">公众号</div>
         </div>
-        <div class="nav-item mt-2 pt-2 mb-2">
-          <i class="sprite sprite-news"></i>
-          <div class="py-1">版本介绍</div>
+        <div class="nav-item mt-2 pt-2 mb-2" v-show="isshow">
+          <i class="sprite sprite-versions"></i>
+          <div class="py-1 text">版本介绍</div>
         </div>
-        <div class="nav-item mt-2 pt-2 mb-2">
-          <i class="sprite sprite-news"></i>
-          <div class="py-1">对局环境</div>
+        <div class="nav-item mt-2 pt-2 mb-2" v-show="isshow">
+          <i class="sprite sprite-envir"></i>
+          <div class="py-1 text">对局环境</div>
         </div>
-        <div class="nav-item mb-2 mt-2 pt-2">
-          <i class="sprite sprite-news"></i>
-          <div class="py-1">无限王者团</div>
+        <div class="nav-item mb-2 mt-2 pt-2" v-show="isshow">
+          <i class="sprite sprite-team"></i>
+          <div class="py-1 text">无限王者团</div>
         </div>
       </div>
-      <div class="close py-2 fs-sm bg-light text-center">
-        <i class="sprite sprite-arrow"></i>
-        <span class="px-1">收起</span>
+      <div class="close py-2 fs-sm bg-light text-center" @click="isshow=!isshow">
+        <i class="sprite" :class="isshow? `sprite-arrow`:`sprite-arrow-reverse`"></i>
+        <span class="px-1">{{isshow? "收起":"展开"}}</span>
       </div>
     </div>
     <m-list-card icon="menu" title="新闻资讯" :categories="newsData">
@@ -82,10 +82,10 @@
     <m-list-card icon="card-hero" title="英雄列表" :categories="heroData">
       <template #items="{category}">
         <ul class="hero_list">
-          <li class="hero_item px-2" v-for="(hero,i) in category.heroList" :key="i">
+          <router-link tag="li" :to="`/heroes/${hero._id}`" class="hero_item px-2" v-for="(hero,i) in category.heroList" :key="i">
             <img class="w-100" :src="hero.avatar" alt="">
             <span class="fs-md text-center">{{hero.name}}</span>
-          </li>
+          </router-link>
         </ul>
       </template>
     </m-list-card>
@@ -115,7 +115,8 @@ export default {
         loop: true
       },
       newsData: [],
-      heroData:[]
+      heroData:[],
+      isshow:true,
     };
   },
   created() {
@@ -156,6 +157,9 @@ export default {
       width: 25%;
       &:nth-child(4n) {
         border-right: none;
+      }
+      .text{
+        
       }
     }
   }
