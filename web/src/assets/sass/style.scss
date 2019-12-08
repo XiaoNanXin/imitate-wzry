@@ -31,6 +31,9 @@ a{
 
 $base-font-size: 1rem;
 
+.border-bottom{
+  border-bottom: 1px solid $border-color;
+}
 
 @each $colorKey,$color in $colors {
   .text-#{$colorKey}{
@@ -148,6 +151,7 @@ $spacing-base-size: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
     i {
       color: map-get($colors, 'primary');
       font-weight: bold;

@@ -14,7 +14,11 @@
     </swiper>
     <div class="nav-icons text-center mt-3">
       <div class="nav d-flex flex-wrap text-dark-1 fs-sm">
-        <router-link tag="div" to="https://pvp.qq.com/m/m201706/coming/index.htm" class="nav-item mt-2 pt-2 mb-2">
+        <router-link
+          tag="div"
+          to="https://pvp.qq.com/m/m201706/coming/index.htm"
+          class="nav-item mt-2 pt-2 mb-2"
+        >
           <i class="sprite sprite-news"></i>
           <br />
           <div class="py-1 text">爆料站</div>
@@ -71,7 +75,13 @@
     </div>
     <m-list-card icon="menu" title="新闻资讯" :categories="newsData">
       <template #items="{category}">
-        <router-link tag="div" :to="`articles/${item._id}`" class="py-2 fs-lg d-flex" v-for="(item,i) in category.newsList" :key="i">
+        <router-link
+          tag="div"
+          :to="`articles/${item._id}`"
+          class="py-2 fs-lg d-flex"
+          v-for="(item,i) in category.newsList"
+          :key="i"
+        >
           <span class="text-info">[{{item.categorityName}}]</span>
           <span class="px-1">|</span>
           <span class="text-ellipsis flex-1">{{item.title}}</span>
@@ -82,24 +92,33 @@
     <m-list-card icon="card-hero" title="英雄列表" :categories="heroData">
       <template #items="{category}">
         <ul class="hero_list">
-          <router-link tag="li" :to="`/heroes/${hero._id}`" class="hero_item px-2" v-for="(hero,i) in category.heroList" :key="i">
-            <img class="w-100" :src="hero.avatar" alt="">
+          <router-link
+            tag="li"
+            :to="`/heroes/${hero._id}`"
+            class="hero_item px-2"
+            v-for="(hero,i) in category.heroList"
+            :key="i"
+          >
+            <img class="w-100" :src="hero.avatar" alt />
             <span class="fs-md text-center">{{hero.name}}</span>
           </router-link>
         </ul>
       </template>
     </m-list-card>
-    <m-list-card icon="hero" title="精彩视频"></m-list-card>
-    <m-list-card icon="hero" title="图文攻略"></m-list-card>
+    <Mcard icon="hero" title="精彩视频">
+      <div class="d-flex flex-1 fs-xl mt-3 w-100 text-center">敬请期待</div>
+    </Mcard>
+    <Mcard icon="hero" title="图文攻略">
+      <div class="d-flex flex-1 fs-xl mt-3 w-100 text-center">敬请期待</div>
+    </Mcard>
   </div>
 </template>
 
 <script>
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 export default {
-  
   filters: {
-    date(val){
+    date(val) {
       return dayjs(val).format("MM/DD");
     }
   },
@@ -115,8 +134,8 @@ export default {
         loop: true
       },
       newsData: [],
-      heroData:[],
-      isshow:true,
+      heroData: [],
+      isshow: true
     };
   },
   created() {
@@ -124,15 +143,15 @@ export default {
     this.getHeroList();
   },
   methods: {
-    async getnewsList(){
-      let res = await this.$http.get('/news/list');
+    async getnewsList() {
+      let res = await this.$http.get("/news/list");
       this.newsData = res.data;
     },
-    async getHeroList(){
-      let res = await this.$http.get('/heroes/list'); 
+    async getHeroList() {
+      let res = await this.$http.get("/heroes/list");
       this.heroData = res.data;
     }
-  },
+  }
 };
 </script>
 
@@ -158,21 +177,20 @@ export default {
       &:nth-child(4n) {
         border-right: none;
       }
-      .text{
-        
+      .text {
       }
     }
   }
 }
 
-.hero_list{
+.hero_list {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   padding: 0 0;
-  margin-left:-7px;
-  margin-right:-7px;
-  .hero_item{
+  margin-left: -7px;
+  margin-right: -7px;
+  .hero_item {
     width: 20%;
     text-align: center;
   }
