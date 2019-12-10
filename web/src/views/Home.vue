@@ -1,15 +1,15 @@
 <template>
   <div>
-    <swiper :options="swiperOption">
-      <swiper-slide>
+    <swiper :options="swiperOption" v-if="addsData.length > 1">
+      <swiper-slide v-for="(item) in addsData" :key="item.name">
+        <img class="w-100" :src="item.items[0].image" alt />
+      </swiper-slide>
+      <!-- <swiper-slide>
         <img class="w-100" src="../assets/images/a806e41784c93c10cc77d7a146892090.jpeg" alt />
       </swiper-slide>
       <swiper-slide>
         <img class="w-100" src="../assets/images/a806e41784c93c10cc77d7a146892090.jpeg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="w-100" src="../assets/images/a806e41784c93c10cc77d7a146892090.jpeg" alt />
-      </swiper-slide>
+      </swiper-slide> -->
       <div class="swiper-pagination pagination-home text-right px-3 pb-2" slot="pagination"></div>
     </swiper>
     <div class="nav-icons text-center mt-3">
@@ -128,19 +128,26 @@ export default {
         // some swiper options/callbacks
         // 所有的参数同 swiper 官方 api 参数
         // ...
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper 
+        observeParents:true,//修改swiper的父元素时，自动初始化swiper 
         pagination: {
-          el: ".pagination-home"
+          el: ".pagination-home",
         },
-        loop: true
+        autoplay:true,
+        speed:500,
+        loop: true,
+        
       },
       newsData: [],
       heroData: [],
+      addsData:[],
       isshow: true
     };
   },
   created() {
     this.getnewsList();
     this.getHeroList();
+    this.getAddsList();
   },
   methods: {
     async getnewsList() {
@@ -150,6 +157,11 @@ export default {
     async getHeroList() {
       let res = await this.$http.get("/heroes/list");
       this.heroData = res.data;
+    },
+    async getAddsList(){
+      let res = await this.$http.get("adds/list");
+      // window.console.log(res.data);
+      this.addsData = res.data;
     }
   }
 };

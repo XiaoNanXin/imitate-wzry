@@ -5,6 +5,7 @@ module.exports = app => {
     let Article = mongoose.model('Article');
     let Category = mongoose.model('Category');
     let Hero = mongoose.model('Hero');
+    let Add = mongoose.model('Add');
     app.use('/web/api',router);
     //批量生成文章
     router.get('/news/init',async(req,res) => {
@@ -119,6 +120,12 @@ module.exports = app => {
         .findById(req.params.id)
       .populate('categories items1 items2 partners.hero')
       .lean()
+        res.send(data);
+    })
+
+    //web端获取广告列表
+    router.get('/adds/list',async (req,res)=>{
+        let data = await Add.find().lean();
         res.send(data);
     })
 
