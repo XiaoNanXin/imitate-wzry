@@ -3,9 +3,6 @@
 ## 一、 技术
 1. node+express+mongodb
 1. vue
-1. 域名+华为云服务器
-1. nginx反向代理
-1. https
 
 ## 二、 表结构
 1. 后台管理系统页面的用户表
